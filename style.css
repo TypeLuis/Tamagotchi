@@ -1,0 +1,80 @@
+body{
+    background-image: url('https://wallpaperaccess.com/full/3431.jpg');
+    background-size: cover;
+}
+
+
+#tamagachi{
+    width: 500px;
+    height: 560px;
+    background: rgba(212, 175, 55, .9);
+    border-radius: 45%;
+    position: absolute;
+    left: 40%;
+    top: 25%;
+}
+
+#feed{
+    position: absolute;
+    left: 65%;
+    top: 65%;
+}
+
+#sleep{
+    position: absolute;
+    left: 15%;
+    top: 65%;
+}
+
+#play{
+    position: absolute;
+    left: 40%;
+    top: 75%;
+}
+
+.button{
+    height: 50px;
+    width: 100px;
+    background: white;
+}
+
+.button:hover{
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    background: skyblue;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity:.5;
+    }
+    100% {
+        opacity:1;
+}
+}
+  
+@-moz-keyframes fadeIn {
+    0% {
+      opacity:.5;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+@-webkit-keyframes fadeIn {
+    .5% {
+      opacity:.5;
+    }
+    100% {
+      opacity:1;
+    }
+}
+
+img{
+    height: 500px;
+    position: absolute;
+    top: 60%;
+    right: 70%;
+}
