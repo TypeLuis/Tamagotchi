@@ -5,13 +5,13 @@ body{
 
 
 #tamagachi{
-    width: 500px;
-    height: 560px;
+    height: 800px;
+    width: 800px;
+    border-radius: 20% 20% 50% 50%;   
     background: rgba(212, 175, 55, .9);
-    border-radius: 45%;
     position: absolute;
-    left: 40%;
-    top: 25%;
+    left: 35%;
+    top: 10%;
 }
 
 #feed{
@@ -77,4 +77,15 @@ img{
     position: absolute;
     top: 60%;
     right: 70%;
+}
+
+#score{
+    width: 500px;
+    height: 560px;
+    background: rgba(212, 175, 55, .9);
+    border-radius: 45%;
+    position: absolute;
+    left: 75%;
+    top: 20%;
+
 }

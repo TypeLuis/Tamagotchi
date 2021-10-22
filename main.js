@@ -1,4 +1,9 @@
 
+const innerBody = document.getElementsByTagName('body')[0].innerHTML
+console.log(innerBody)
+
+
+
 const section = document.getElementById("Books")
 
 function groupEls(){
