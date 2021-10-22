@@ -2,9 +2,35 @@
 const innerBody = document.getElementsByTagName('body')[0].innerHTML
 console.log(innerBody)
 
+const sleepBtn = document.getElementById('sleep')
+const playBtn = document.getElementById('play')
+const feedBtn = document.getElementById('feed')
 
 
-const section = document.getElementById("Books")
+function bttnPress(bttn){
+    bttn.addEventListener('click', () =>{
+        if(bttn === sleepBtn){
+            console.log('sleep')
+        }
+        else if (bttn === playBtn){
+            console.log('play')
+        }
+        else if(bttn === feedBtn){
+            console.log('feed')
+        }
+        else{null}
+    })
+
+}
+
+bttnPress(playBtn)
+bttnPress(sleepBtn)
+bttnPress(feedBtn)
+
+
+
+
+
 
 function groupEls(){
     const div = document.createElement('div')
