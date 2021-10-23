@@ -19,8 +19,8 @@ body{
 #chopper{
     max-width: 200px;
     position: absolute;
-    top: 20%;
-    left: 45%;
+    top: 24%;
+    left: 46.5%;
 }
 
 
@@ -95,32 +95,6 @@ body{
     text-shadow: 2px 2px slateblue
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity:.4;
-    }
-    100% {
-        opacity:1;
-}
-}
-  
-@-moz-keyframes fadeIn {
-    0% {
-      opacity:.4;
-    }
-    100% {
-      opacity:1;
-    }
-  }
-  
-@-webkit-keyframes fadeIn {
-    .5% {
-      opacity:.4;
-    }
-    100% {
-      opacity:1;
-    }
-}
 
 #luffy{
     height: 500px;
@@ -202,13 +176,19 @@ body{
 }
 
 #chopD2{
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
     max-width: 300px;
     position: relative;
     top: 300px;
-    left: 45%;
+    left: 45.5%;
 }
 
 #chopD{
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
     max-width: 300px;
     position: relative;
     top: 300px;
@@ -216,6 +196,9 @@ body{
 }
 
 #chopD3{
+    animation: fadeIn 5s;
+    -webkit-animation: fadeIn 5s;
+    -moz-animation: fadeIn 5s;
     max-width: 300px;
     position: relative;
     top: 300px;
@@ -242,4 +225,51 @@ body{
     position: relative;
     top: 250px;
     left: 45%;
+}
+
+#talkLayer{
+    height: 200px;
+    width: 200px;
+    background-color: snow;
+    position: absolute;
+    top: 38.3%;
+    left: 22%;
+    border-radius: 25%;
+    opacity: .5;
+
+}
+
+#chopE{
+    max-width: 400px;
+    position: absolute;
+    top: 24%;
+    left: 43%;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity:.4;
+    }
+    100% {
+        opacity:1;
+}
+}
+  
+@-moz-keyframes fadeIn {
+    0% {
+      opacity:.4;
+    }
+    100% {
+      opacity:1;
+    }
+  }
+  
+@-webkit-keyframes fadeIn {
+    .5% {
+      opacity:.4;
+    }
+    100% {
+      opacity:1;
+    }
 }
