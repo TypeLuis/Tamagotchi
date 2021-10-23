@@ -9,6 +9,7 @@ let hungerNum = document.getElementById('hunger')
 let boredNum = document.getElementById('bordem')
 let tiredNum = document.getElementById('tired')
 let ageNum = document.getElementById('age')
+let time = false
 
 const tamagachi = document.getElementById('tamagachi')
 const bubbles = document.getElementsByClassName('bubbles')
@@ -43,10 +44,11 @@ const luffyWords = [
     "He knocked out!!",
     "How bored did he get?!",
     "How did you forget to feed him?!",
-    "Wow!, he got old!",
+    "Wow! he really got old!",
     "A new tamagachi!"
 
 ]
+
 
 // removes the attributes for the chopper img and adds new attribute
 function removeAtt(src, id){
@@ -55,8 +57,6 @@ function removeAtt(src, id){
     chopImg.setAttribute('id', id)
     chopImg.setAttribute('src', src)
 }
-
-
 
 function press (button, element, src, id, word){
     button.addEventListener('click', ()=>{
@@ -68,35 +68,12 @@ function press (button, element, src, id, word){
     })
 }
 
-
-
-
-
-// function buttonPress(element, button, src, id, word){
-//     // Use the try and catch to catch the error for the null property for age
-//     try{
-//         button.addEventListener('click', () =>{
-//             if(element.innerText > 0 && gameFinished === false){
-//                 removeAtt(src, id)
-//                 talkBubble.innerText = word
-
-//                 element.innerText = element.innerText - 1  
-//             }          
-//         })
-//     }
-//     catch(TypeError){
-//         null
-//     }  
-// }
-
-
-// for base, 1000 = 1sec interval
-
-function interval(element, button, baseNum, src, id, word){
+function interval(element, baseNum){
     // model - bindings: variables, DOM references, other values related to application state 
     element.innerText = 0
     let interval;
     let base = baseNum
+    let reset = false
     talkBubble.innerText = luffyWords[7]
     removeAtt(chopperUrl['start'], 'chopper')
 
@@ -107,10 +84,13 @@ function interval(element, button, baseNum, src, id, word){
 
     interval = setInterval(()=>{       
         
-        // adds current element by 1 on each intervall    
-        increment()
         
-
+        for(let rst of resetbtn){
+            rst.addEventListener('click', ()=>{
+                clearInterval(interval)
+            })
+        }
+        
         if(gameFinished === true){
             clearInterval(interval)
         }
@@ -139,9 +119,7 @@ function interval(element, button, baseNum, src, id, word){
             gameFinished = true
         }
 
-        
-       
-    
+        increment()
     } , base)
 
 
@@ -153,29 +131,47 @@ function interval(element, button, baseNum, src, id, word){
 
 
 
-interval(ageNum, null, 1000, null, null)
-interval(boredNum, playBtn, 1000, chopperUrl['fun'], "chop", luffyWords[1])
-interval(hungerNum, feedBtn, 1000, chopperUrl['eat'], "chop2", luffyWords[2])
-interval(tiredNum, sleepBtn, 1000, chopperUrl['up'], "chop3", luffyWords[0])
+interval(ageNum, 1000)
+interval(boredNum, 1000)
+interval(hungerNum, 1000)
+interval(tiredNum, 1000)
+
+press(playBtn, boredNum ,chopperUrl['fun'], "chop", luffyWords[1])
+press(feedBtn, hungerNum ,chopperUrl['eat'], "chop2", luffyWords[2])
+press(sleepBtn, tiredNum ,chopperUrl['up'], "chop3", luffyWords[0])
 
 
 
-function reset(){
+function reset(base){
     for(let num of numEls){
         if(gameFinished === true){
             num.innerText = 0
         }
     }
     gameFinished = false
-    interval(ageNum, null, 1000, null, null)
-    interval(boredNum, playBtn, 1000, chopperUrl['fun'], "chop", luffyWords[1])
-    interval(hungerNum, feedBtn, 1000, chopperUrl['eat'], "chop2", luffyWords[2])
-    interval(tiredNum, sleepBtn, 1000, chopperUrl['up'], "chop3", luffyWords[0])
+    interval(ageNum, base)
+    interval(boredNum, base)
+    interval(hungerNum, base)
+    interval(tiredNum, base)
+    console.log(base)
 }
+
 
 
 for(let rst of resetbtn){
     rst.addEventListener('click', ()=>{
-        reset()
+        if(rst.innerText === 'easy'){
+            reset(1500)
+        }
+        else if(rst.innerText === 'normal'){
+            reset(1000)
+        }
+        else if(rst.innerText === 'hard'){
+            reset(500)
+        }
+        else(reset(1000))
     })
 }
+
+
+
