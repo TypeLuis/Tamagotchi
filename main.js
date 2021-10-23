@@ -1,31 +1,25 @@
 
-const innerBody = document.getElementsByTagName('body')[0].innerHTML
-console.log(innerBody)
+// const innerBody = document.getElementsByTagName('body')[0].innerHTML
+// console.log(innerBody)
 
 const sleepBtn = document.getElementById('sleep')
 const playBtn = document.getElementById('play')
 const feedBtn = document.getElementById('feed')
 
 
-function bttnPress(bttn){
-    bttn.addEventListener('click', () =>{
-        if(bttn === sleepBtn){
-            console.log('sleep')
-        }
-        else if (bttn === playBtn){
-            console.log('play')
-        }
-        else if(bttn === feedBtn){
-            console.log('feed')
-        }
-        else{null}
-    })
+let hungerNum = document.getElementById('hunger')
+let boredNum = document.getElementById('bordem')
+let tiredNum = document.getElementById('tired')
+let ageNum = document.getElementById('age')
 
-}
 
-bttnPress(playBtn)
-bttnPress(sleepBtn)
-bttnPress(feedBtn)
+
+tiredNum.innerText = 1
+console.log(tiredNum.innerText)
+console.log(tiredNum.innerText === 0)
+
+
+
 
 
 
@@ -43,6 +37,25 @@ function groupEls(){
 
 
 
+class buttons{
+    constructor(num ,count, element, base, src1, src2){
+        this.count = count
+        this.element = element
+        this.base = base
+        this.src1 = src1
+        this.src2 = src2
+    }
+
+
+    
+    decreaseNum(){
+        this.element.innerText --
+    }  
+
+
+
+
+}
 
 
 
@@ -50,38 +63,44 @@ function groupEls(){
 
 
 
-function interval(){
+function interval(element, button, baseNum){
     // model - bindings: variables, DOM references, other values related to application state 
     let interval;
     let count = 1
-    let base = 1000
+    let base = baseNum
 
-    const head = document.getElementById('count')
 
 
     //view - applications where the UI is updated / provided current data
-    function renderNum(num){
-    head.innerText = num
-    }
+    
 
 
     //controller - application logic (event listeners )
-    function increment(value, step){
-        return value+=step
+    function increment(){
+        return element.innerText ++
     }
 
-
+    function buttonPress(){
+        button.addEventListener('click', () =>{
+            return element.innerText --
+        })
+    
+    }
+    buttonPress()
 
 
     interval = setInterval(()=>{
-    
+        
+        // console.log(element)
         // display content
-        renderNum(count)
+        // renderNum(count)
     
         // update         
-        count = increment(count, 1)
-    
-        if(count > 10){
+        count = increment()
+
+        
+        
+        if(element.innerText >= 10){
             // game over state
             clearInterval(interval)
         }
@@ -92,4 +111,4 @@ function interval(){
     // number - interger (in milliseconds)
 }
 
-interval()
+interval(boredNum, playBtn, 500)
