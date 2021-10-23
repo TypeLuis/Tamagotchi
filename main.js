@@ -11,51 +11,23 @@ let hungerNum = document.getElementById('hunger')
 let boredNum = document.getElementById('bordem')
 let tiredNum = document.getElementById('tired')
 let ageNum = document.getElementById('age')
+const tamagachi = document.getElementById('tamagachi')
+const bubbles = document.getElementsByClassName('bubbles')
+let gameLost = false
 
+let colorPrompt = prompt("What color would you like your tamagachi?")
 
-
-tiredNum.innerText = 1
-console.log(tiredNum.innerText)
-console.log(tiredNum.innerText === 0)
-
-
-
-
-
-
-
-
-
-function groupEls(){
-    const div = document.createElement('div')
-    div.setAttribute('class', 'container')
-
+for (bubble of bubbles){
+    bubble.style.backgroundColor = colorPrompt
 }
 
 
 
 
-
-
-class buttons{
-    constructor(num ,count, element, base, src1, src2){
-        this.count = count
-        this.element = element
-        this.base = base
-        this.src1 = src1
-        this.src2 = src2
-    }
-
-
-    
-    decreaseNum(){
-        this.element.innerText --
-    }  
+const numEls = document.getElementsByClassName('number')
 
 
 
-
-}
 
 
 
@@ -80,14 +52,18 @@ function interval(element, button, baseNum){
         return element.innerText ++
     }
 
+    
     function buttonPress(){
         button.addEventListener('click', () =>{
-            return element.innerText --
+            if(element.innerText > 0 && gameLost === false){
+                return element.innerText --  
+            }          
         })
     
     }
+    
     buttonPress()
-
+    
 
     interval = setInterval(()=>{
         
@@ -98,17 +74,30 @@ function interval(element, button, baseNum){
         // update         
         count = increment()
 
-        
-        
-        if(element.innerText >= 10){
-            // game over state
+
+
+        if(hungerNum.innerText >= 10){
             clearInterval(interval)
+            gameLost = true
+        }
+        else if(tiredNum.innerText >= 10){
+            clearInterval(interval)
+            gameLost = true
+        }
+        else if(boredNum.innerText >= 10){
+            clearInterval(interval)
+            gameLost = true
         }
     
-    }, base)
+    } , base)
+
+
+    
     // setInterval(function, number)
     // function - anonymous
     // number - interger (in milliseconds)
 }
 
 interval(boredNum, playBtn, 500)
+interval(hungerNum, feedBtn, 750)
+interval(tiredNum, sleepBtn, 500)
