@@ -3,7 +3,7 @@
 const sleepBtn = document.getElementById('sleep')
 const playBtn = document.getElementById('play')
 const feedBtn = document.getElementById('feed')
-
+const buttons = document.getElementsByClassName('button')
 
 let hungerNum = document.getElementById('hunger')
 let boredNum = document.getElementById('bordem')
@@ -14,6 +14,8 @@ const tamagachi = document.getElementById('tamagachi')
 const bubbles = document.getElementsByClassName('bubbles')
 const talkBubble = document.getElementById('luffySpeak')
 const chopImg = document.getElementById('chopper')
+const resetbtn = document.getElementsByClassName('startOver')
+const numEls = document.getElementsByClassName('number')
 
 let gameFinished = false
 
@@ -55,6 +57,39 @@ function removeAtt(src, id){
 }
 
 
+
+function press (button, element, src, id, word){
+    button.addEventListener('click', ()=>{
+        if(element.innerText > 0 && gameFinished === false){
+            removeAtt(src, id)
+            talkBubble.innerText = word
+            element.innerText = element.innerText - 1  
+        }    
+    })
+}
+
+
+
+
+
+// function buttonPress(element, button, src, id, word){
+//     // Use the try and catch to catch the error for the null property for age
+//     try{
+//         button.addEventListener('click', () =>{
+//             if(element.innerText > 0 && gameFinished === false){
+//                 removeAtt(src, id)
+//                 talkBubble.innerText = word
+
+//                 element.innerText = element.innerText - 1  
+//             }          
+//         })
+//     }
+//     catch(TypeError){
+//         null
+//     }  
+// }
+
+
 // for base, 1000 = 1sec interval
 
 function interval(element, button, baseNum, src, id, word){
@@ -63,61 +98,49 @@ function interval(element, button, baseNum, src, id, word){
     let interval;
     let base = baseNum
     talkBubble.innerText = luffyWords[7]
+    removeAtt(chopperUrl['start'], 'chopper')
 
     //controller - application logic (event listeners )
     function increment(){
         return element.innerText ++
-    }
-    
-    function buttonPress(){
-        // Use the try and catch to catch the error for the null property for age
-        try{
-            button.addEventListener('click', () =>{
-                if(element.innerText > 0 && gameFinished === false){
-                    removeAtt(src, id)
-                    talkBubble.innerText = word
-                    return element.innerText --  
-                }          
-            })
-        }
-        catch(TypeError){
-            null
-        }  
-    }
-    
-    buttonPress()
+    }    
 
     interval = setInterval(()=>{       
         
         // adds current element by 1 on each intervall    
         increment()
+        
 
-
-
-        if(hungerNum.innerText >= 10){
+        if(gameFinished === true){
+            clearInterval(interval)
+        }
+        else if(hungerNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
             removeAtt(chopperUrl['hungry'], 'chopD2')
             talkBubble.innerText = luffyWords[5]
             gameFinished = true
         }
-        else if(tiredNum.innerText >= 10){
+        else if(tiredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
             removeAtt(chopperUrl['sleep'], 'chopD3')
             talkBubble.innerText = luffyWords[3]
             gameFinished = true
         }
-        else if(boredNum.innerText >= 10){
+        else if(boredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
             removeAtt(chopperUrl['bored'], 'chopD')
             talkBubble.innerText = luffyWords[4]
             gameFinished = true
         }
-        else if(ageNum.innerText >= 100){
+        else if(ageNum.innerText >= 100 && gameFinished === false){
             clearInterval(interval)
             removeAtt(chopperUrl['end'], 'chopE')
-            talkBubble.innerText = [6]
+            talkBubble.innerText = luffyWords[6]
             gameFinished = true
         }
+
+        
+       
     
     } , base)
 
@@ -130,10 +153,29 @@ function interval(element, button, baseNum, src, id, word){
 
 
 
-interval(ageNum, null, 500, null, null)
+interval(ageNum, null, 1000, null, null)
+interval(boredNum, playBtn, 1000, chopperUrl['fun'], "chop", luffyWords[1])
+interval(hungerNum, feedBtn, 1000, chopperUrl['eat'], "chop2", luffyWords[2])
+interval(tiredNum, sleepBtn, 1000, chopperUrl['up'], "chop3", luffyWords[0])
 
 
 
-interval(boredNum, playBtn, 5000, chopperUrl['fun'], "chop", luffyWords[1])
-interval(hungerNum, feedBtn, 7050, chopperUrl['eat'], "chop2", luffyWords[2])
-interval(tiredNum, sleepBtn, 5000, chopperUrl['up'], "chop3", luffyWords[0])
+function reset(){
+    for(let num of numEls){
+        if(gameFinished === true){
+            num.innerText = 0
+        }
+    }
+    gameFinished = false
+    interval(ageNum, null, 1000, null, null)
+    interval(boredNum, playBtn, 1000, chopperUrl['fun'], "chop", luffyWords[1])
+    interval(hungerNum, feedBtn, 1000, chopperUrl['eat'], "chop2", luffyWords[2])
+    interval(tiredNum, sleepBtn, 1000, chopperUrl['up'], "chop3", luffyWords[0])
+}
+
+
+for(let rst of resetbtn){
+    rst.addEventListener('click', ()=>{
+        reset()
+    })
+}
