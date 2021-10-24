@@ -21,6 +21,11 @@ const numEls = document.getElementsByClassName('number')
 let gameFinished = false
 
 let colorPrompt = prompt("What color would you like your tamagachi?")
+let tamaName = prompt('What do you want to name your tamagachi?')
+
+if(tamaName === ""){
+    tamaName = "chopper"
+}
 
 for (bubble of bubbles){
     bubble.style.backgroundColor = colorPrompt
@@ -38,15 +43,14 @@ const chopperUrl = {
 }
 
 const luffyWords = [
-    'Good way to wake him up!',
-    "Keep going! that way he won't be bored.",
+    `Good way to wake ${tamaName} up!`,
+    `Keep going! that way ${tamaName} won't be bored.`,
     "I wish i could eat that food...",
-    "He knocked out!!",
-    "How bored did he get?!",
-    "How did you forget to feed him?!",
-    "Wow! he really got old!",
-    "A new tamagachi!"
-
+    `${tamaName} knocked out!!`,
+    `How bored did ${tamaName} get?!`,
+    `How did you forget to feed ${tamaName}?!`,
+    `Wow! ${tamaName} really got old!`,
+    `${tamaName} is born!`
 ]
 
 
@@ -172,6 +176,3 @@ for(let rst of resetbtn){
         else(reset(1000))
     })
 }
-
-
-
