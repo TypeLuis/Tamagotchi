@@ -15,6 +15,7 @@ const tamagachi = document.getElementById('tamagachi')
 const bubbles = document.getElementsByClassName('bubbles')
 const talkBubble = document.getElementById('luffySpeak')
 const chopImg = document.getElementById('chopper')
+const luffyImg = document.getElementById('luffy')
 const resetbtn = document.getElementsByClassName('startOver')
 const numEls = document.getElementsByClassName('number')
 
@@ -43,29 +44,36 @@ const chopperUrl = {
 }
 
 const luffyWords = [
-    `Good way to wake ${tamaName} up!`,
+    `Let ${tamaName} get some rest`,
     `Keep going! that way ${tamaName} won't be bored.`,
     "I wish i could eat that food...",
-    `${tamaName} knocked out!!`,
+    `${tamaName} woke up!!!`,
     `How bored did ${tamaName} get?!`,
     `How did you forget to feed ${tamaName}?!`,
     `Wow! ${tamaName} really got old!`,
     `${tamaName} is born!`
 ]
 
+luffyUrl = {
+    win : '/assets/79f5a49e85cbf1302d08555ef2a488fa.png',
+    lose: '/assets/f91dad9ffd33eba950665e1c706dee59.png',
+    start: '/assets/luffy-chibi-john-gerald-tubale-transparent.png'
+}
 
 // removes the attributes for the chopper img and adds new attribute
-function removeAtt(src, id){
-    chopImg.removeAttribute('src')
-    chopImg.removeAttribute('id')
-    chopImg.setAttribute('id', id)
-    chopImg.setAttribute('src', src)
+function removeAtt(img, src, id){
+    img.removeAttribute('src')
+    img.removeAttribute('id')
+    img.setAttribute('id', id)
+    img.setAttribute('src', src)
 }
+
+
 
 function press (button, element, src, id, word){
     button.addEventListener('click', ()=>{
         if(element.innerText > 0 && gameFinished === false){
-            removeAtt(src, id)
+            removeAtt(chopImg, src, id)
             talkBubble.innerText = word
             element.innerText = element.innerText - 1  
         }    
@@ -79,7 +87,8 @@ function interval(element, baseNum){
     let base = baseNum
     let reset = false
     talkBubble.innerText = luffyWords[7]
-    removeAtt(chopperUrl['start'], 'chopper')
+    removeAtt(chopImg, chopperUrl['start'], 'chopper')
+    removeAtt(luffyImg, luffyUrl['start'], 'luffy')
 
     //controller - application logic (event listeners )
     function increment(){
@@ -100,25 +109,29 @@ function interval(element, baseNum){
         }
         else if(hungerNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopperUrl['hungry'], 'chopD2')
+            removeAtt(chopImg, chopperUrl['hungry'], 'chopD2')
+            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[5]
             gameFinished = true
         }
         else if(tiredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopperUrl['sleep'], 'chopD3')
+            removeAtt(chopImg, chopperUrl['up'], 'chopD3')
+            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[3]
             gameFinished = true
         }
         else if(boredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopperUrl['bored'], 'chopD')
+            removeAtt(chopImg, chopperUrl['bored'], 'chopD')
+            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[4]
             gameFinished = true
         }
         else if(ageNum.innerText >= 100 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopperUrl['end'], 'chopE')
+            removeAtt(chopImg, chopperUrl['end'], 'chopE')
+            removeAtt(luffyImg, luffyUrl['win'], 'luffy3')
             talkBubble.innerText = luffyWords[6]
             gameFinished = true
         }
@@ -135,25 +148,25 @@ function interval(element, baseNum){
 
 
 
-interval(ageNum, 1000)
+interval(ageNum, 500)
 interval(boredNum, 1000)
 interval(hungerNum, 1000)
 interval(tiredNum, 1000)
 
 press(playBtn, boredNum ,chopperUrl['fun'], "chop", luffyWords[1])
 press(feedBtn, hungerNum ,chopperUrl['eat'], "chop2", luffyWords[2])
-press(sleepBtn, tiredNum ,chopperUrl['up'], "chop3", luffyWords[0])
+press(sleepBtn, tiredNum ,chopperUrl['sleep'], "chop3", luffyWords[0])
 
 
 
-function reset(base){
+function reset(base, ageBase){
     for(let num of numEls){
         if(gameFinished === true){
             num.innerText = 0
         }
     }
     gameFinished = false
-    interval(ageNum, base)
+    interval(ageNum, ageBase)
     interval(boredNum, base)
     interval(hungerNum, base)
     interval(tiredNum, base)
@@ -165,14 +178,14 @@ function reset(base){
 for(let rst of resetbtn){
     rst.addEventListener('click', ()=>{
         if(rst.innerText === 'easy'){
-            reset(1500)
+            reset(1500, 500)
         }
         else if(rst.innerText === 'normal'){
-            reset(1000)
+            reset(1000, 750)
         }
         else if(rst.innerText === 'hard'){
-            reset(500)
+            reset(500, 750)
         }
-        else(reset(1000))
+        else(reset(1000, 750))
     })
 }
