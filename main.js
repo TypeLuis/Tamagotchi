@@ -3,7 +3,7 @@
 const sleepBtn = document.getElementById('sleep')
 const playBtn = document.getElementById('play')
 const feedBtn = document.getElementById('feed')
-const buttons = document.getElementsByClassName('button')
+
 
 let hungerNum = document.getElementById('hunger')
 let boredNum = document.getElementById('bordem')
@@ -138,11 +138,6 @@ function interval(element, baseNum){
         increment()
     } , base)
 
-
-    
-    // setInterval(function, number)
-    // function - anonymous
-    // number - interger (in milliseconds)
 }
 
 
