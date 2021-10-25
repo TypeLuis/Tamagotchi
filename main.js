@@ -61,7 +61,7 @@ luffyUrl = {
 }
 
 // removes the attributes for the chopper img and adds new attribute
-function removeAtt(img, src, id){
+function changeAtt(img, src, id){
     img.removeAttribute('src')
     img.removeAttribute('id')
     img.setAttribute('id', id)
@@ -73,7 +73,7 @@ function removeAtt(img, src, id){
 function press (button, element, src, id, word){
     button.addEventListener('click', ()=>{
         if(element.innerText > 0 && gameFinished === false){
-            removeAtt(chopImg, src, id)
+            changeAtt(chopImg, src, id)
             talkBubble.innerText = word
             element.innerText = element.innerText - 1  
         }    
@@ -85,10 +85,9 @@ function interval(element, baseNum){
     element.innerText = 0
     let interval;
     let base = baseNum
-    let reset = false
     talkBubble.innerText = luffyWords[7]
-    removeAtt(chopImg, chopperUrl['start'], 'chopper')
-    removeAtt(luffyImg, luffyUrl['start'], 'luffy')
+    changeAtt(chopImg, chopperUrl['start'], 'chopper')
+    changeAtt(luffyImg, luffyUrl['start'], 'luffy')
 
     //controller - application logic (event listeners )
     function increment(){
@@ -109,29 +108,29 @@ function interval(element, baseNum){
         }
         else if(hungerNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopImg, chopperUrl['hungry'], 'chopD2')
-            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
+            changeAtt(chopImg, chopperUrl['hungry'], 'chopD2')
+            changeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[5]
             gameFinished = true
         }
         else if(tiredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopImg, chopperUrl['up'], 'chopD3')
-            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
+            changeAtt(chopImg, chopperUrl['up'], 'chopD3')
+            changeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[3]
             gameFinished = true
         }
         else if(boredNum.innerText >= 10 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopImg, chopperUrl['bored'], 'chopD')
-            removeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
+            changeAtt(chopImg, chopperUrl['bored'], 'chopD')
+            changeAtt(luffyImg, luffyUrl['lose'], 'luffy2')
             talkBubble.innerText = luffyWords[4]
             gameFinished = true
         }
         else if(ageNum.innerText >= 100 && gameFinished === false){
             clearInterval(interval)
-            removeAtt(chopImg, chopperUrl['end'], 'chopE')
-            removeAtt(luffyImg, luffyUrl['win'], 'luffy3')
+            changeAtt(chopImg, chopperUrl['end'], 'chopE')
+            changeAtt(luffyImg, luffyUrl['win'], 'luffy3')
             talkBubble.innerText = luffyWords[6]
             gameFinished = true
         }
