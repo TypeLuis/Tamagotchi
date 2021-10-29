@@ -33,14 +33,14 @@ for (bubble of bubbles){
 }
 
 const chopperUrl = {
-    hungry: '/assets/maxresdefault.png',
-    bored: '/assets/anime-doctor-one-piece-pirates-wallpaper-thumb.png',
-    sleep: '/assets/d5e14q8-2421a2c9-76a7-48b7-84a1-cabc5b8c8840 (1).png',
-    up: '/assets/5-tony-tony-chopper-sreeraj-kaniyamparambil-transparent.png',
-    eat: '/assets/27704659aae4b05f53c86950de2c8fb5.png',
-    fun: '/assets/9039f5ca23b28b74c45bf712848ee3e0.png',
-    start: '/assets/Chopper_post_timeskip.png',
-    end: '/assets/One-Piece-Chopper-Rumble-ball-header.png'
+    hungry: 'assets/maxresdefault.png',
+    bored: 'assets/anime-doctor-one-piece-pirates-wallpaper-thumb.png',
+    sleep: 'assets/d5e14q8-2421a2c9-76a7-48b7-84a1-cabc5b8c8840 (1).png',
+    up: 'assets/5-tony-tony-chopper-sreeraj-kaniyamparambil-transparent.png',
+    eat: 'assets/27704659aae4b05f53c86950de2c8fb5.png',
+    fun: 'assets/9039f5ca23b28b74c45bf712848ee3e0.png',
+    start: 'assets/Chopper_post_timeskip.png',
+    end: 'assets/One-Piece-Chopper-Rumble-ball-header.png'
 }
 
 const luffyWords = [
@@ -55,9 +55,9 @@ const luffyWords = [
 ]
 
 luffyUrl = {
-    win : '/assets/79f5a49e85cbf1302d08555ef2a488fa.png',
-    lose: '/assets/f91dad9ffd33eba950665e1c706dee59.png',
-    start: '/assets/luffy-chibi-john-gerald-tubale-transparent.png'
+    win : 'assets/79f5a49e85cbf1302d08555ef2a488fa.png',
+    lose: 'assets/f91dad9ffd33eba950665e1c706dee59.png',
+    start: 'assets/luffy-chibi-john-gerald-tubale-transparent.png'
 }
 
 // removes the attributes for the chopper img and adds new attribute
